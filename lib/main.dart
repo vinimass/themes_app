@@ -38,17 +38,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return/* Container(
-      child: Container(
-        color: Theme.of(context).accentColor,
-        alignment: Alignment.center,
-        child: Text(
-          'Text with a background color',
-          style: Theme.of(context).textTheme.title,
-        ),
-      )
-    );*/
-
+    return
     Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -57,13 +47,11 @@ class MyHomePage extends StatelessWidget {
         child: Container(
           child: Text(
             'Text with a background color',
-            style: Theme.of(context).textTheme.title,
           ),
         ),
       ),
       floatingActionButton: Container(
         child: FloatingActionButton(
-          backgroundColor: Colors.red,
           onPressed: () async{
             final retIptu = await Navigator.push(context,
                 MaterialPageRoute(builder: (context) => IPTU(title: 'Theme: IPTU'))
@@ -83,28 +71,27 @@ class IPTU extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-      Scaffold(
-        appBar: AppBar(
-          title: Text(title),
-        ),
-        body: Center(
-          child: Container(
-            color: Theme.of(context).accentColor,
-            child: Text(
-              'Text with a background color',
-              style: Theme.of(context).textTheme.title,
+    return new Theme(data: Theme.of(context).copyWith(primaryColor: Colors.red, accentColor: Colors.redAccent),
+        child: Scaffold(
+            appBar: AppBar(
+              title: Text(title),
             ),
-          ),
-        ),
-        floatingActionButton: Theme(
-          data: Theme.of(context).copyWith(accentColor: Colors.red, primaryColor: Colors.red),
-          child: FloatingActionButton(
-            onPressed: null,
-            child: Icon(Icons.add),
-          ),
-        ),
-      );
+            body: Center(
+              child: Theme(
+                data: Theme.of(context),
+                child: Text(
+                  'IPTU',
+                ),
+              ),
+            ),
+            floatingActionButton: Container(
+              child: FloatingActionButton(
+                onPressed: null,
+                child: Icon(Icons.add),
+              ),
+            ),
+          )
+    );
   }
 }
 
