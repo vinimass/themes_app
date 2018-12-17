@@ -26,8 +26,8 @@ import 'package:flutter/material.dart';
 final ThemeData padrao = new ThemeData(
   // Define the default Brightness and Colors
   brightness: Brightness.dark,
-  primaryColor: Colors.lightBlue[800],
-  accentColor: Colors.cyan[600],
+  primaryColor: CompanyColors.primary,
+  accentColor: CompanyColors.accent,
 
   // Define the default Font Family
   fontFamily: 'Montserrat',
@@ -40,3 +40,12 @@ final ThemeData padrao = new ThemeData(
     body1: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
   ),
 );
+
+class CompanyColors {
+ static const primary = Colors.green;
+ static const accent = Colors.greenAccent;
+ static const iptuPrimary = Colors.red;
+ static const iptuAccent = Colors.redAccent;
+ static const contadaguaPrimary = Colors.blue;
+ static const contadaguaAccent = Colors.blueAccent;
+}
