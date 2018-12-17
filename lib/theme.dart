@@ -23,23 +23,20 @@
 
 import 'package:flutter/material.dart';
 
-final ThemeData CompanyThemeData = new ThemeData(
-    brightness: Brightness.light,
-    primaryColor: CompanyColors.padrao[50],
-    primaryColorBrightness: Brightness.light,
-    accentColor: CompanyColors.iptu[50],
-    accentColorBrightness: Brightness.light
+final ThemeData padrao = new ThemeData(
+  // Define the default Brightness and Colors
+  brightness: Brightness.dark,
+  primaryColor: Colors.lightBlue[800],
+  accentColor: Colors.cyan[600],
+
+  // Define the default Font Family
+  fontFamily: 'Montserrat',
+
+  // Define the default TextTheme. Use this to specify the default
+  // text styling for headlines, titles, bodies of text, and more.
+  textTheme: TextTheme(
+    headline: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),
+    title: TextStyle(fontSize: 26.0, fontStyle: FontStyle.italic),
+    body1: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+  ),
 );
-
-class CompanyColors {
-  CompanyColors._(); // this basically makes it so you can instantiate this class
-  static const Map<int, Color> padrao = const <int, Color> {
-    50: const Color(515454),
-    100: const Color(56454)
-  };
-
-  static const Map<int, Color> iptu = const <int, Color> {
-    50: const Color(1111121),
-    100: const Color(555554)
-  };
-}
