@@ -1,4 +1,8 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'theme.dart' as Estilos;
 
 void main() => runApp(new MyApp());
@@ -37,9 +41,6 @@ class MyHomePage extends StatelessWidget {
                 child: new Column(
                   children: <Widget>[
                     new Container(
-                      decoration: new BoxDecoration(
-                        border: new Border.all(color: Estilos.CompanyColors.iptuPrimary, width: 2.0)
-                      ),
                       child: new Padding(
                           padding: EdgeInsets.all(20.0),
                               child: new Column(
@@ -58,9 +59,6 @@ class MyHomePage extends StatelessWidget {
                       ),
                     ),
                     new Container(
-                      decoration: new BoxDecoration(
-                          border: new Border.all(color: Estilos.CompanyColors.contadaguaPrimary, width: 2.0)
-                      ),
                       child: new Padding(
                         padding: EdgeInsets.all(20.0),
                         child: new Column(
@@ -73,6 +71,24 @@ class MyHomePage extends StatelessWidget {
                                 );
                               },
                               color: Estilos.CompanyColors.contadaguaPrimary,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    new Container(
+                      child: new Padding(
+                        padding: EdgeInsets.all(20.0),
+                        child: new Column(
+                          children: <Widget>[
+                            new RaisedButton(
+                              child: new Text("Camera"),
+                              onPressed: ()async{
+                                final retCamera = await Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) => Camera())
+                                );
+                              },
+                              color: Estilos.CompanyColors.primary,
                             )
                           ],
                         ),
@@ -161,3 +177,37 @@ class ContaDagua extends StatelessWidget {
   }
 }
 
+class Camera extends StatefulWidget {
+  @override
+  _CameraState createState() => _CameraState();
+}
+
+class _CameraState extends State<Camera> {
+  File _image;
+  Future getImage() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+
+    setState(() {
+      _image = image;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text('Image Picker Example'),
+      ),
+      body: new Center(
+        child: _image == null
+            ? new Text('No image selected.')
+            : new Image.file(_image),
+      ),
+      floatingActionButton: new FloatingActionButton(
+        onPressed: getImage,
+        tooltip: 'Pick Image',
+        child: new Icon(Icons.add_a_photo),
+      ),
+    );
+  }
+}
